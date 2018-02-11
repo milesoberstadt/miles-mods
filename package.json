@@ -4,6 +4,7 @@
   "description": "A starter template for Vue with Angular2, Coffeescript, and Pug",
   "main": "dist/app.js",
   "scripts": {
+    "start": "node node_modules/gulp/bin/gulp build && node dist/app.js",
     "test": "NODE_ENV=test gulp test"
   },
   "engines": {
@@ -12,7 +13,7 @@
   "browser": {
     "vue": "vue/dist/vue.common"
   },
-  "author": "DevMode, Inc.",
+  "author": "Miles Oberstadt",
   "license": "ISC",
   "dependencies": {
     "async": "^2.1.5",
