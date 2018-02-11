@@ -1,0 +1,57 @@
+{
+  "name": "vue_angular_pug_coffee_boilerplate",
+  "version": "0.0.1",
+  "description": "A starter template for Vue with Angular2, Coffeescript, and Pug",
+  "main": "dist/app.js",
+  "scripts": {
+    "test": "NODE_ENV=test gulp test"
+  },
+  "engines": {
+    "node": "6.9.4"
+  },
+  "browser": {
+    "vue": "vue/dist/vue.common"
+  },
+  "author": "DevMode, Inc.",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.5",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-session": "^1.15.1",
+    "helmet": "^3.1.0",
+    "provide-handler": "0.0.5",
+    "redis": "^2.6.5",
+    "superagent": "^3.4.4",
+    "uuid": "^3.0.1",
+    "vue": "^2.1.8",
+    "vue-dmresource": "^0.4.0",
+    "vue-dmstore": "^0.2.1",
+    "vue-router": "^2.1.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.1",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "coffee-script": "^1.12.2",
+    "coffeeify": "^2.1.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-cached": "^1.1.1",
+    "gulp-coffee": "^2.3.3",
+    "gulp-mocha": "^3.0.1",
+    "gulp-pug": "^3.2.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.8",
+    "jsdomify": "^3.1.0",
+    "mocha": "^3.2.0",
+    "mockery": "^2.0.0",
+    "pug": "^2.0.0-beta6",
+    "sinon": "^1.17.6",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "vueify": "^9.4.0"
+  }
+}

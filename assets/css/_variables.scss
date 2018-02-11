@@ -1,0 +1,55 @@
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$gray-base:              #33312b;
+$gray-darker:            #020202;
+$gray-dark:              #9e9da3;
+$gray:                   #a39f9d;
+$gray-light:             #d6d3d1;
+$gray-lighter:           #f3f2ef;
+
+$brand-primary:         #177eb9;
+$brand-success:         #41814f;
+$brand-info:            $gray-dark;
+$brand-warning:         #f39707;
+$brand-danger:          #c73918;
+
+$text-color:            $gray-base;
+
+$font-size-base:          16px !default;
+
+
+// Buttons
+$btn-font-weight:                500;
+
+$btn-primary-border:             $brand-primary;
+$btn-success-border:             $brand-success;
+$btn-info-border:                $brand-info;
+$btn-warning-border:             $brand-warning;
+$btn-danger-border:              $brand-danger;
+
+$btn-icon-size:                  20px;
+
+//== Navbar
+//
+//##
+
+// Basics of a navbar
+$navbar-height:                    70px;
+$navbar-border-radius:             0;
+$navbar-padding-horizontal:        25px;
+
+//=== Inverted navbar
+// Reset inverted navbar basics
+$navbar-inverse-bg:                         $gray-base;
+$navbar-inverse-border:                     transparent;
+
+// Inverted navbar links
+$navbar-inverse-link-active-bg:             $gray-darker;
+
+
+// Forms
+$state-danger-text:              $brand-danger;
+$state-danger-bg:                #f2e1de;
+$state-danger-border:            $brand-danger;

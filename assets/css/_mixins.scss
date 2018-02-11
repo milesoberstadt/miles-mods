@@ -1,0 +1,41 @@
+// MIXINS
+
+// Hollow Buttons
+@mixin btn-hollow($color) {
+    background-color: #fff;
+    border-color: $color;
+    color: $color;
+
+    &:hover {
+        background-color: $color;
+        color: #fff;
+    }
+
+    &[disabled] {
+        background-color: transparent;
+        border-color: transparent;
+        opacity: 1;
+
+        &:hover {
+            border-color: transparent;
+            background-color: transparent;
+            color: $color;
+        }
+    }
+}
+
+// Auto size icon buttons based on font size and center in circle
+@mixin button-icon-size($size) {
+    $computed-size: $size + 12; // basically "padding", make a var?
+
+    height: $computed-size;
+    width: $computed-size;
+    min-width: $computed-size;
+
+    & .material-icons {
+        font-size: $size;
+        transform: translate(- $size / 2, - $size / 2);  //MAGIX!!
+        line-height: $size;
+        width: $size;
+    }
+}
