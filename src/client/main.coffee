@@ -11,9 +11,13 @@ User = new API 'user',
     url: '/me'
 
 Home = require './components/Home.vue'
+Projects = require './components/Projects.vue'
+KB = require './components/KnowledgeBase.vue'
 
 routes = [
   { path: '/', name: 'Home', component: Home }
+  { path: '/projects', name: 'Projects', component: Projects }
+  { path: '/kb', name: 'Knowledge Base', component: KB }
   { path: '*', component: Home }
 ]
 
@@ -29,6 +33,6 @@ new Vue({
     user: {}
   router: router
   created: ->
-    
+
 
 }).$mount('#app')

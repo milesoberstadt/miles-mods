@@ -3,7 +3,7 @@ html(lang='en')
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    title Vue Angular2 Pug Coffeescript Test
+    title Miles-Mods.com
     meta(name='description', content='')
     meta(name='author', content='')
     meta(name='viewport', content='width=device-width, initial-scale=1')
@@ -31,6 +31,10 @@ html(lang='en')
             ul.nav.navbar-nav.navbar-supervisor
               li(:class="{ active: $route.name === 'Home' }")
                 router-link(to='/') Home
+              li(:class="{ active: $route.name === 'Projects' }")
+                router-link(to='/projects') Projects
+              li(:class="{ active: $route.name === 'Knowledge Base' }")
+                router-link(to='/kb') Knowledge Base
 
       router-view
 
