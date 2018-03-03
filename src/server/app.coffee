@@ -13,6 +13,10 @@ api.use bodyParser.json()
 app.use '/assets', express.static path.join(__dirname, './assets')
 app.use '/web', express.static path.join(__dirname, './web')
 
+articles = express.Router()
+articles.get '/', handlers.articles.all
+api.use '/articles', articles
+
 app.use '/api', api
 
 # Send any route that express doesn't recognize to front end...
