@@ -36,7 +36,8 @@ html(lang='en')
               li(:class="{ active: $route.name === 'Knowledge Base' }")
                 router-link(to='/kb') Knowledge Base
 
-      router-view
+      div.container
+        router-view
 
     script(src='/assets/js/bootstrap.min.js')
     script(src='/web/client.min.js')
