@@ -1,4 +1,5 @@
 API = require 'vue-dmresource'
+markdown = require('markdown').markdown
 Articles = new API 'articles',
   all:
     method: 'GET'
@@ -19,11 +20,12 @@ module.exports =
       console.log 'here', @articles.length
 
   created: ->
-    console.log 'created'
     if (@$route.params.id)
       Articles.get_article(@$route.params.id).then (article) =>
-        @article = article
+        @article = markdown.toHTML article
     else
       Articles.all().then (articles) =>
-        @articles = articles
-        console.log @articles.length
+        @articles = []
+        for article in articles
+          article.body = markdown.toHTML article.body
+          @articles.push article

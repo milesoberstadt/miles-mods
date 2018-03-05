@@ -8,7 +8,7 @@
       div(v-for='ar in articles')
         div.well.well-lg
           h2 {{ar.title}}
-          p {{ar.body.trim(0,200)}}...
+          p(v-html="ar.body")
   
 </template>
 
