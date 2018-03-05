@@ -15,6 +15,7 @@ app.use '/web', express.static path.join(__dirname, './web')
 
 articles = express.Router()
 articles.get '/', handlers.articles.all
+articles.get '/:id', handlers.articles.get_with_id
 api.use '/articles', articles
 
 app.use '/api', api

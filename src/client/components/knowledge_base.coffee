@@ -16,16 +16,22 @@ module.exports =
     article: null
 
   methods:
-    checkThing: () ->
-      console.log 'here', @articles.length
+    fetch_articles: () ->
+      if (@$route.params.id)
+        Articles.get_article(@$route.params.id).then (article) =>
+          article.body = markdown.toHTML article.body
+          @article = article
+      else
+        Articles.all().then (articles) =>
+          @articles = []
+          for article in articles
+            article.body = markdown.toHTML article.body
+            @articles.push article
 
   created: ->
-    if (@$route.params.id)
-      Articles.get_article(@$route.params.id).then (article) =>
-        @article = markdown.toHTML article
-    else
-      Articles.all().then (articles) =>
-        @articles = []
-        for article in articles
-          article.body = markdown.toHTML article.body
-          @articles.push article
+    @fetch_articles()
+
+  watch:
+    '$route': (to, from) ->
+      #console.log to, from
+      @fetch_articles()
