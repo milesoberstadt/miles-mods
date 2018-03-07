@@ -1,4 +1,3 @@
-'use strict';
 Handler = require 'provide-handler'
 { Articles } =  require '../models'
 monk = require 'monk'

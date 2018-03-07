@@ -4,6 +4,7 @@ session = require 'express-session'
 passport = require 'passport'
 Strategy = require('passport-local').Strategy
 ensureLogin = require 'connect-ensure-login'
+bcrypt = require 'bcrypt'
 bodyParser = require 'body-parser'
 helmet = require 'helmet'
 handlers = require './handlers'
@@ -23,22 +24,26 @@ api.use bodyParser.json()
 # Setup local strategy for auth
 passport.use new Strategy (username, password, cb) ->
   # Do the database comparison here, callback function expects
-  console.log "Login attempt", username, password
-  user =
-    id: 1
-    username: 'test'
-    password: 'test2'
-  if username is 'test' and password is 'test2'
-    cb null, user
-  else
-    cb "User not found"
+  # TODO: figure out a better error handling page
+  # TODO: Add some logging with IPs and other stuff
+  handlers.users.get_with_username username, (user) =>
+    if !user
+      return cb "User not found"
+    # Check password hash
+    bcrypt.compare password, user.password, (err, result) =>
+      if !result
+        return cb "User not found"
+      cb null, user
 
 # If I understand serialize and deserialze, these functions write/read from the cookie
 passport.serializeUser (user, cb) ->
-  cb null, user.id
+  cb null, user._id
 passport.deserializeUser (id, cb) ->
   # Get the user from the db, by id
-  cb(null, {id: id})
+  handlers.users.get_with_id id, (user) =>
+    if !user
+      return cb null
+    cb null, {id: user._id}
 
 login = express.Router()
 login.use bodyParser.urlencoded {extended: true}
@@ -46,6 +51,13 @@ login.post '/',
   passport.authenticate('local', {failureRedirect: '/login'}),
   (req, res) ->
     res.redirect '/admin'
+# Uncomment this for a salted hash builder at /login/build
+###
+login.post '/build', (req, res, next) ->
+  #res.json req.body.password
+  bcrypt.hash req.body.password, 10, (err, hash) =>
+    res.json hash
+###
 app.use '/login', login
 
 # Auth needed routes
