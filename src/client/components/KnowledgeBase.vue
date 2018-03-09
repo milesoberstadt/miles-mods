@@ -1,6 +1,6 @@
 <template lang="pug">
   //- Single article display
-  div(v-if="$route.params.id != null && article != null")
+  div(v-if="$route.params.url != null && article != null")
     div.well.well-lg
       h2 {{article.title}}
       p(v-html="article.body")

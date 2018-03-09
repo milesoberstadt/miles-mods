@@ -21,7 +21,7 @@ routes = [
   { path: '/projects', name: 'Projects', component: Projects }
   { path: '/projects/:id', name: 'Project Info', component: Projects }
   { path: '/kb', name: 'Knowledge Base', component: KB }
-  { path: '/kb/:id', name: 'Knowledge Base Article', component: KB }
+  { path: '/kb/:url', name: 'Knowledge Base Article', component: KB }
   { path: '/admin', name: 'Admin Interface', component: Admin }
   { path: '/login', name: 'Login', component: Login }
 ]

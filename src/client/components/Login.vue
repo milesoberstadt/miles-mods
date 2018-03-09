@@ -6,7 +6,7 @@
         h3.text-center You know what to do
         form(action="/login", method="post")
           div
-            input.form-control(type='text', placeholder='Username', name='username')
+            input.form-control(type='text', placeholder='Username', name='username', autofocus='')
           div
             input.form-control(type='password', placeholder='Password', name='password')
           div

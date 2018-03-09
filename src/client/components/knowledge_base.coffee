@@ -17,8 +17,8 @@ module.exports =
 
   methods:
     fetch_articles: () ->
-      if (@$route.params.id)
-        Articles.get_article(@$route.params.id).then (article) =>
+      if (@$route.params.url)
+        Articles.get_article("?url="+@$route.params.url).then (article) =>
           article.body = markdown.toHTML article.body
           @article = article
       else
