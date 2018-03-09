@@ -40,7 +40,21 @@ module.exports =
 
     save_article: () ->
       Articles.save_article(@selected_article_id, @selected_article).then (article) =>
-        console.log article
+        # Assuming we got an article back, clear fields, reset stuff
+        # TODO: Add toastr or equivelent to show that stuff worked
+        if (article && article._id?)
+          @selected_article_id = null
+          @selected_article = null
+          @get_article_names()
+
+    new_article: () ->
+      @selected_article_id = -1
+      @selected_article =
+        _id: -1
+        title: ""
+        body: ""
+        url: ""
+        tags: []
 
   created: ->
     @get_article_names()

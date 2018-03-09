@@ -17,7 +17,7 @@ class ArticlesHandler
 
   update: (req, res, next) ->
     # New articles will have -1 as their _id, let's remove that and insert the record
-    if req.params.id is -1
+    if req.params.id is "-1"
       delete req.body._id
       Articles.insert(req.body).then (article) ->
         res.json article
