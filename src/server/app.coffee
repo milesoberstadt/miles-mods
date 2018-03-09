@@ -69,6 +69,8 @@ app.use '/web', express.static path.join(__dirname, './web')
 
 articles = express.Router()
 articles.get '/', handlers.articles.all
+articles.put '/:id', ensureLogin.ensureLoggedIn(), handlers.articles.update
+articles.get '/names', handlers.articles.names
 api.use '/articles', articles
 
 app.use '/api', api

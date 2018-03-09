@@ -14,6 +14,7 @@ Home = require './components/Home.vue'
 Projects = require './components/Projects.vue'
 KB = require './components/KnowledgeBase.vue'
 Admin = require './components/Admin.vue'
+ArticleEditor = require './components/ArticleEditor.vue'
 Login = require './components/Login.vue'
 
 routes = [
@@ -23,6 +24,7 @@ routes = [
   { path: '/kb', name: 'Knowledge Base', component: KB }
   { path: '/kb/:url', name: 'Knowledge Base Article', component: KB }
   { path: '/admin', name: 'Admin Interface', component: Admin }
+  { path: '/admin/edit', name: 'Article Editor', component: ArticleEditor }
   { path: '/login', name: 'Login', component: Login }
 ]
 
