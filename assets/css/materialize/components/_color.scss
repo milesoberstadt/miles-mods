@@ -6,6 +6,23 @@
 
 // Google Color Palette defined: http://www.google.com/design/spec/style/color.html
 
+// http://materialmixer.co/#757575/00C853
+$night-lime: (
+  "base":       #757575,
+  "lighten-5":  #EEEEEE,
+  "lighten-4":  #EEEEEE,
+  "lighten-3":  #EEEEEE,
+  "lighten-2":  #EEEEEE,
+  "lighten-1":  #EEEEEE,
+  "lighten":  #EEEEEE,
+  "darken":   #424242,
+  "darken-1":   #424242,
+  "darken-2":   #424242,
+  "darken-3":   #424242,
+  "darken-4":   #424242,
+  "accent":  #00C853,
+  "accent-light":  #00E676,
+);
 
 $materialize-red: (
   "base":       #e51c23,
@@ -338,6 +355,7 @@ $shades: (
 );
 
 $colors: (
+  "night-lime": $night-lime,
   "materialize-red": $materialize-red,
   "red": $red,
   "pink": $pink,
@@ -409,4 +427,3 @@ $colors: (
   @warn "Unknown `#{$color}` - `#{$type}` in $colors.";
   @return null;
 }
-
