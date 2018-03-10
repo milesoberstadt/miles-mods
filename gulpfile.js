@@ -25,6 +25,11 @@ gulp.task('build:assets:img', () => {
     .pipe(gulp.dest('dist/assets/img'))
 })
 
+gulp.task('build:assets:fonts', () => {
+  return gulp.src('assets/fonts/**/*')
+    .pipe(gulp.dest('dist/assets/fonts'))
+})
+
 gulp.task('build:sass', function () {
   const sass = require('gulp-sass')
   return gulp.src('assets/css/*.scss')
@@ -114,7 +119,7 @@ gulp.task('watch:utils', [ 'build:utils' ], () => {
   gulp.watch('src/utils/**/*.coffee', { interval: 500 }, [ 'build:utils' ])
 })
 
-gulp.task('build:assets', [ 'build:assets:js', 'build:assets:img' ])
+gulp.task('build:assets', [ 'build:assets:js', 'build:assets:img', 'build:assets:fonts' ])
 gulp.task('build:client', [ 'build:vue', 'build:pug', 'build:assets' ])
 gulp.task('build', [ 'clean', 'build:client', 'build:sass', 'build:utils', 'build:server' ])
 gulp.task('test', [ 'test:unit' ])
