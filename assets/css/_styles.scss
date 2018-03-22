@@ -6,3 +6,15 @@ body {
 nav {
   background-color: $primary-color-dark;
 }
+
+ul>li.active>a {
+  border-bottom: 1px solid $secondary-color;
+}
+
+div.card {
+  background-color: $primary-color-dark;
+}
+
+.card-content .card-title {
+  color: $secondary-color
+}

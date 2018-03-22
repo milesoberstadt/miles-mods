@@ -8,7 +8,18 @@
     //- List all articles
     div(v-else-if='articles.length')
       div(v-if="articles.length")
-        div(v-for='ar in articles')
+        div.sm12.m8
+          div.card.horizontal(v-for='ar in articles')
+            div.card-image
+              img(src='https://lorempixel.com/100/190/nature/6')
+            div.card-stacked
+              div.card-content
+                router-link.article-title(:to="'/kb/'+ ar.url")
+                  span.card-title {{ar.title}}
+                p(v-html="ar.preview")
+              div.card-action
+                router-link.article-title(:to="'/kb/'+ ar.url") Read more...
+        //-div(v-for='ar in articles')
           div.well.well-lg
             h2 
               a(:href="'/kb/'+ ar.url") {{ar.title}}

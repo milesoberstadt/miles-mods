@@ -25,8 +25,18 @@ module.exports =
         Articles.all().then (articles) =>
           @articles = []
           for article in articles
-            article.body = markdown.toHTML article.body
+            article.preview = @get_article_preview article.body
             @articles.push article
+
+    get_article_preview: (bodyMarkup) ->
+      bodyTree = markdown.parse bodyMarkup
+      preview = ""
+      # Find the first paragraph and clip it
+      for item in bodyTree
+        if item[0] is 'para'
+          preview = markdown.toHTML item[1]
+          break
+      firstParagraph
 
   created: ->
     @fetch_articles()
