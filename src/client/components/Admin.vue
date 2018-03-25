@@ -1,6 +1,7 @@
 <template lang="pug">
   .container
-    h3 If you're reading this, you're me or my security is shit and I should commit seppuku. 
+    h3 Admin Page
+    router-link.btn.btn-default(to='/admin/edit') Edit Articles
 </template>
 
 <script lang="coffee"> # https://github.com/vuejs/vueify/issues/117
