@@ -5,10 +5,11 @@
       div.col-xs-12.col-md-6
         button.btn.btn-default(@click="new_article()") Create New Article
         h4 Or
-        label(for='existing_edit_sel') Edit Existing Article:
-        select.form-control(id='existing_edit_sel', v-model="selected_article_id", @change="get_article()")
-          option -
-          option(v-for='a in article_names', :value='a._id') {{a.title}}
+        div.input-field.col.s12.m4
+          select.form-control(id='existing_edit_sel', v-model="selected_article_id", @change="get_article()")
+            option -
+            option(v-for='a in article_names', :value='a._id') {{a.title}}
+          label(for='existing_edit_sel') Edit Existing Article:
     div.row(v-if="selected_article")
       div.col-xs-12.col-md-6
         label(for="article_title_editor") Article Title

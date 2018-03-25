@@ -29,13 +29,13 @@ module.exports =
     get_article_names: () ->
       Articles.all_names().then (articles) =>
         @article_names = articles
+        # Update the list of articles in the UI after a delay
+        setTimeout(@initSelectUI, 500)
 
     get_article: () ->
       if !@selected_article_id or @selected_article_id is '-'
         return
-      console.log @selected_article_id
       Articles.get_article("?id="+@selected_article_id).then (article) =>
-        console.log article
         @selected_article = article
 
     save_article: () ->
@@ -56,5 +56,13 @@ module.exports =
         url: ""
         tags: []
 
+    initSelectUI: () ->
+      # Materialize selects need initializing...
+      elem = document.querySelector 'select'
+      M.FormSelect.init elem, null
+
   created: ->
     @get_article_names()
+
+  mounted: ->
+    @initSelectUI()
