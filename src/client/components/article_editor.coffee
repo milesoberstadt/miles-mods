@@ -1,5 +1,6 @@
 API = require 'vue-dmresource'
 markdown = require('markdown').markdown
+showdown = require('showdown')
 Articles = new API 'articles',
   all_names:
     method: 'GET'
@@ -18,12 +19,13 @@ module.exports =
     article_names: []
     selected_article_id: null
     selected_article: null
+    markdown_converter: null
 
   computed:
     markdown_html: () ->
       if !@selected_article.body
         return null
-      markdown.toHTML @selected_article.body
+      @markdown_converter.makeHtml @selected_article.body
 
   methods:
     get_article_names: () ->
@@ -62,6 +64,7 @@ module.exports =
       M.FormSelect.init elem, null
 
   created: ->
+    @markdown_converter = new showdown.Converter()
     @get_article_names()
 
   mounted: ->

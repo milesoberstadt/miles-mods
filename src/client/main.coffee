@@ -4,6 +4,8 @@ Vue.use VueRouter
 DMStore = require 'vue-dmstore'
 Vue.use new DMStore
 
+showdown = require('showdown')
+
 API = require 'vue-dmresource'
 User = new API 'user',
   me:
@@ -40,6 +42,7 @@ new Vue({
     user: {}
   router: router
   created: ->
-
+    # Setup our markdown options
+    showdown.setOption('tables', true);
 
 }).$mount('#app')

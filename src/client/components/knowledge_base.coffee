@@ -1,5 +1,7 @@
 API = require 'vue-dmresource'
+# TODO Finish replacing markdown with showdown
 markdown = require('markdown').markdown
+showdown = require('showdown')
 Articles = new API 'articles',
   all:
     method: 'GET'
@@ -14,12 +16,13 @@ module.exports =
   data: ->
     articles: {}
     article: null
+    markdown_converter: null
 
   methods:
     fetch_articles: () ->
       if (@$route.params.url)
         Articles.get_article("?url="+@$route.params.url).then (article) =>
-          article.body = markdown.toHTML article.body
+          article.body = markdown_converter.makeHtml article.body
           @article = article
       else
         Articles.all().then (articles) =>
@@ -34,11 +37,12 @@ module.exports =
       # Find the first paragraph and clip it
       for item in bodyTree
         if item[0] is 'para'
-          preview = markdown.toHTML item[1]
+          preview = markdown_converter.makeHtml item[1]
           break
       firstParagraph
 
   created: ->
+    @markdown_converter = new showdown.Converter()
     @fetch_articles()
 
   watch:

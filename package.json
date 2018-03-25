@@ -30,6 +30,7 @@
     "passport-local": "^1.0.0",
     "provide-handler": "0.0.5",
     "redis": "^2.6.5",
+    "showdown": "^1.8.6",
     "superagent": "^3.4.4",
     "uuid": "^3.0.1",
     "vue": "^2.1.8",
