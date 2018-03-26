@@ -7,7 +7,7 @@
         h4 Or
         div.input-field.col.s12.m4
           select.form-control(id='existing_edit_sel', v-model="selected_article_id", @change="get_article()")
-            option -
+            option(disabled='', selected='') Pick an article to edit
             option(v-for='a in article_names', :value='a._id') {{a.title}}
           label(for='existing_edit_sel') Edit Existing Article:
     div.row(v-if="selected_article")
@@ -21,11 +21,11 @@
         label TODO: Build a tag selector
       div.col-xs-12.col-md-6
         p(v-html="markdown_html")
-          
+
     div.row(v-if="selected_article")
       div.col-xs-12
         button.btn.btn-primary(@click="save_article()") Save Article
-        
+
 </template>
 
 <script lang="coffee"> # https://github.com/vuejs/vueify/issues/117
