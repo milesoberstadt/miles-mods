@@ -22,7 +22,7 @@ Login = require './components/Login.vue'
 routes = [
   { path: '/', name: 'Home', component: Home }
   { path: '/projects', name: 'Projects', component: Projects }
-  { path: '/projects/:id', name: 'Project Info', component: Projects }
+  { path: '/projects/:url', name: 'Project Info', component: Projects }
   { path: '/kb', name: 'Knowledge Base', component: KB }
   { path: '/kb/:url', name: 'Knowledge Base Article', component: KB }
   { path: '/admin', name: 'Admin Interface', component: Admin }

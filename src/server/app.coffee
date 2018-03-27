@@ -73,6 +73,12 @@ articles.put '/:id', ensureLogin.ensureLoggedIn(), handlers.articles.update
 articles.get '/names', handlers.articles.names
 api.use '/articles', articles
 
+kb = express.Router()
+kb.get '/', handlers.kb.all
+kb.put '/:id', ensureLogin.ensureLoggedIn(), handlers.kb.update
+kb.get '/names', handlers.kb.names
+api.use '/kb', kb
+
 app.use '/api', api
 
 # Send any route that express doesn't recognize to front end...

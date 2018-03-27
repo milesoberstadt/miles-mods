@@ -2,11 +2,11 @@ API = require 'vue-dmresource'
 # TODO Finish replacing markdown with showdown
 markdown = require('markdown').markdown
 showdown = require('showdown')
-Articles = new API 'articles',
+KB = new API 'kb',
   all:
     method: 'GET'
     url: '/'
-  get_article:
+  get_kb:
     method: 'GET'
     url: '/?'
 
@@ -21,11 +21,11 @@ module.exports =
   methods:
     fetch_articles: () ->
       if (@$route.params.url)
-        Articles.get_article("?url="+@$route.params.url).then (article) =>
+        KB.get_kb("?url="+@$route.params.url).then (article) =>
           article.body = @markdown_converter.makeHtml article.body
           @article = article
       else
-        Articles.all().then (articles) =>
+        KB.all().then (articles) =>
           @articles = []
           for article in articles
             article.preview = @get_article_preview article.body
