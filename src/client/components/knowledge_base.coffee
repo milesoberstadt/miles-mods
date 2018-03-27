@@ -22,7 +22,7 @@ module.exports =
     fetch_articles: () ->
       if (@$route.params.url)
         Articles.get_article("?url="+@$route.params.url).then (article) =>
-          article.body = markdown_converter.makeHtml article.body
+          article.body = @markdown_converter.makeHtml article.body
           @article = article
       else
         Articles.all().then (articles) =>
@@ -37,9 +37,9 @@ module.exports =
       # Find the first paragraph and clip it
       for item in bodyTree
         if item[0] is 'para'
-          preview = markdown_converter.makeHtml item[1]
+          preview = @markdown_converter.makeHtml item[1]
           break
-      firstParagraph
+      preview
 
   created: ->
     @markdown_converter = new showdown.Converter()

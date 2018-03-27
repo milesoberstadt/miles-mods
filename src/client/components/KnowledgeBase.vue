@@ -11,7 +11,7 @@
         div.sm12.m8
           div.card.horizontal(v-for='ar in articles')
             div.card-image
-              img(src='https://lorempixel.com/100/190/nature/6')
+              img(:src='ar.previewImage')
             div.card-stacked
               div.card-content
                 router-link.article-title(:to="'/kb/'+ ar.url")
@@ -21,12 +21,12 @@
                 router-link.article-title(:to="'/kb/'+ ar.url") Read more...
         //-div(v-for='ar in articles')
           div.well.well-lg
-            h2 
+            h2
               a(:href="'/kb/'+ ar.url") {{ar.title}}
             p(v-html="ar.body")
     div(v-else='')
       h2 Loading...
-  
+
 </template>
 
 <script lang="coffee"> # https://github.com/vuejs/vueify/issues/117
