@@ -2,9 +2,14 @@
   div.container
     //- Single article display
     div(v-if="$route.params.url != null && article != null")
-      div.well.well-lg
-        h2 {{article.title}}
-        p(v-html="article.body")
+      div.row
+        div.col.s12
+          div.card
+            div.card-image
+              img(:src="article.headerImage")
+              span.card-title {{article.title}}
+            div.card-content
+              div(v-html="article.body")
     //- List all articles
     div(v-else-if='articles.length')
       div(v-if="articles.length")
