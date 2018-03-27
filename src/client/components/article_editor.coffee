@@ -55,6 +55,8 @@ module.exports =
         _id: -1
         title: ""
         body: ""
+        previewImage: ""
+        headerImage: ""
         url: ""
         tags: []
 

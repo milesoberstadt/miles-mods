@@ -11,16 +11,28 @@
             option(v-for='a in article_names', :value='a._id') {{a.title}}
           label(for='existing_edit_sel') Edit Existing Article:
     div.row(v-if="selected_article")
-      div.col-xs-12.col-md-6
-        label(for="article_title_editor") Article Title
-        input.form-control(v-model="selected_article.title")
-        label(for="article_url_editor") Article URL code
-        input.form-control(v-model="selected_article.url")
-        label(for="article_body_editor") Article Body
-        textarea.form-control(v-model="selected_article.body", style='min-width: 100%', rows=10)
-        label TODO: Build a tag selector
-      div.col-xs-12.col-md-6
-        p(v-html="markdown_html")
+      h4 Edit Article
+      div.col.s12
+        div.card
+          div.card-content
+            span.card-title Article Attributes
+            label Article Title
+            input.form-control(v-model="selected_article.title")
+            label(for="article_url_editor") Article URL code
+            input.form-control(v-model="selected_article.url")
+            label(for="article_url_editor") Article Preview Image (TODO: Add image uploader)
+            input.form-control(v-model="selected_article.previewImage")
+            label(for="article_url_editor") Article Header Image (TODO: Add image uploader)
+            input.form-control(v-model="selected_article.headerImage")
+            label(for="article_body_editor") Article Body
+            textarea.form-control(v-model="selected_article.body", style='min-width: 100%', rows=10)
+            label TODO: Build a tag selector
+      h4 Article Preview
+      div.col.s12
+        div.card
+          div.card-content
+            span.card-title {{selected_article.title}}
+            p(v-html="markdown_html")
 
     div.row(v-if="selected_article")
       div.col-xs-12
