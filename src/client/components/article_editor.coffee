@@ -22,6 +22,10 @@ module.exports =
     markdown_converter: null
 
   computed:
+    preview_url: () ->
+      return !@selected_article.previewIsBase64? or @selected_article.previewIsBase64 is false
+    header_url: () ->
+      return !@selected_article.headerIsBase64? or @selected_article.headerIsBase64 is false
     markdown_html: () ->
       if !@selected_article.body
         return null
@@ -56,9 +60,37 @@ module.exports =
         title: ""
         body: ""
         previewImage: ""
+        previewIsBase64: false
         headerImage: ""
+        headerIsBase64: false
         url: ""
         tags: []
+
+    useLink: (field, event) ->
+      console.log field
+      if field == "preview"
+        @selected_article.previewIsBase64 = false
+        @selected_article.previewImage = event.target.value
+        #console.log @$refs, @$refs.article_preview_img
+        @$refs.article_preview_img.value = ""
+      else if field == "header"
+        @selected_article.headerIsBase64 = false
+        @selected_article.headerImage = event.target.value
+
+    uploadImage: (field, event) ->
+      return if !event.target.files? or !event.target.files[0]
+      # Get the image, convert to base64, upload to mongodb
+      FR= new FileReader()
+
+      FR.addEventListener "load", ((e) =>
+        if field == 'preview'
+          @selected_article.previewIsBase64 = true
+          @selected_article.previewImage = e.target.result
+        else if field == 'header'
+          @selected_article.headerIsBase64 = true
+          @selected_article.headerImage = e.target.result
+      )
+      FR.readAsDataURL event.target.files[0]
 
     initSelectUI: () ->
       # Materialize selects need initializing...
