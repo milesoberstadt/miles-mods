@@ -11,39 +11,20 @@ class ArticlesHandler
       else if req.query.id
         resolve Articles.find_by_id req.query.id
       else
-        console.log "get all"
         resolve Articles.all()
     ).then((articles) ->
-      console.log "promise callback"
       articles = [articles] if !Array.isArray articles
-
       imageUpdateArray = []
       # If we have images from the db to show, we need to fetch those
       for article in articles
         if article.previewIsBase64? and article.previewIsBase64 is true
-          # Search with local variable, for loop values aren't accessible when Promise.all is called
-          test = article.previewImage
-          imageUpdateArray.push Images.findOneByID(test)
+          # Redirect to the images api for stored images
+          article.previewImage = "/api/images/"+article.previewImage
 
-      if imageUpdateArray.length > 0
-        Promise.all(imageUpdateArray).then((images) ->
-          images = [images] if !Array.isArray images
-          #console.log image._id for image in images
-          for image in images
-            for article in articles
-              if article.previewIsBase64 and article.previewImage == image._id.toString()
-                console.log 'found!'
-                article.previewImage = image.base64
-          if articles.length == 1
-            res.json articles[0]
-          else
-            res.json articles
-        )
+      if articles.length == 1
+        res.json articles[0]
       else
-        if articles.length == 1
-          res.json articles[0]
-        else
-          res.json articles
+        res.json articles
     )
 
   update: (req, res, next) ->
