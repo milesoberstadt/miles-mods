@@ -33,10 +33,10 @@
                 div.row
                   div.input-field.col.s6
                     input.form-control#article_preview_link(v-if="preview_url", v-model="selected_article.previewImage", type="text")
-                    input.form-control#article_preview_link(v-else="", @change="useLink('preview', $event)", type="text", placeholder="Using image from database")
+                    input.form-control#article_preview_link(v-else="", @keyup="useLink('preview', $event)", type="text", placeholder="Using image from database")
                     label.active(for='article_preview_link') Article Thumbnail Preview Image
                   div.input-field.col.s6
-                    input.form-control#article_preview_img(type='file', accept="image/png, image/jpeg", @keyup="uploadImage('preview', $event)", ref="article_preview_img")
+                    input.form-control#article_preview_img(type='file', accept="image/png, image/jpeg", @change="uploadImage('preview', $event)", ref="article_preview_img")
                     label.active(for='article_preview_img') Or, upload a preview image
                 div.row
                   div.input-field.col.s6
