@@ -79,6 +79,10 @@ kb.put '/:id', ensureLogin.ensureLoggedIn(), handlers.kb.update
 kb.get '/names', handlers.kb.names
 api.use '/kb', kb
 
+images = express.Router()
+images.get '/:id', handlers.images.get_image
+api.use '/images', images
+
 app.use '/api', api
 
 # Send any route that express doesn't recognize to front end...
