@@ -19,7 +19,7 @@ app.use passport.initialize()
 app.use passport.session()
 
 api = express.Router()
-api.use bodyParser.json()
+api.use bodyParser.json(limit: '50mb')
 
 # Setup local strategy for auth
 passport.use new Strategy (username, password, cb) ->
