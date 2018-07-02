@@ -14,12 +14,6 @@ class ArticlesHandler
         resolve Articles.all()
     ).then((articles) ->
       articles = [articles] if !Array.isArray articles
-      imageUpdateArray = []
-      # If we have images from the db to show, we need to fetch those
-      for article in articles
-        if article.previewIsBase64? and article.previewIsBase64 is true
-          # Redirect to the images api for stored images
-          article.previewImage = "/api/images/"+article.previewImage
 
       if articles.length == 1
         res.json articles[0]

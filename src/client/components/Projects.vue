@@ -6,7 +6,7 @@
         div.col.s12
           div.card
             div.card-image
-              img(:src="article.headerImage")
+              img(:src="get_image_string(article.headerImage)")
               span.card-title {{article.title}}
             div.card-content
               div(v-html="article.body")
@@ -16,7 +16,7 @@
         div.sm12.m8
           div.card.horizontal(v-for='ar in articles')
             div.card-image
-              img(:src='ar.previewImage')
+              img(:src='get_image_string(ar.previewImage)')
             div.card-stacked
               div.card-content
                 router-link.article-title(:to="'/projects/'+ ar.url")

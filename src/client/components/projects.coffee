@@ -41,6 +41,13 @@ module.exports =
           break
       preview
 
+    get_image_string: (img) ->
+      objIdRegex = new RegExp "^[0-9a-fA-F]{24}$"
+      if img.match objIdRegex
+        "/api/images/"+img
+      else
+        img
+
   created: ->
     @markdown_converter = new showdown.Converter()
     @fetch_articles()
