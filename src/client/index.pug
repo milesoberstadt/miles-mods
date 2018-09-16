@@ -18,14 +18,23 @@ html(lang='en')
     #app
       nav
         div.nav-wrapper
-          router-link.brand-logo(to='/') Miles-Mods.com
-          ul.right.hide-on-med-and-down#nav-mobile
+          a.brand-logo(href='#!') Miles-Mods.com
+          a.sidenav-trigger(href="#", data-target="mobile-nav")
+            i.material-icons menu
+          ul.right.hide-on-med-and-down
             li(:class="{ active: $route.name === 'Home' }")
               router-link(to='/') Home
             li(:class="{ active: $route.name === 'Projects' }")
               router-link(to='/projects') Projects
             li(:class="{ active: $route.name === 'Knowledge Base' }")
               router-link(to='/kb') Knowledge Base
+      ul.sidenav#mobile-nav
+        li(:class="{ active: $route.name === 'Home' }")
+          router-link(to='/') Home
+        li(:class="{ active: $route.name === 'Projects' }")
+          router-link(to='/projects') Projects
+        li(:class="{ active: $route.name === 'Knowledge Base' }")
+          router-link(to='/kb') Knowledge Base
       
       router-view
 

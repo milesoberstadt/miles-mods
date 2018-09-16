@@ -44,5 +44,7 @@ new Vue({
   created: ->
     # Setup our markdown options
     showdown.setOption('tables', true);
+    # Setup navbar
+    $('.sidenav').sidenav();
 
 }).$mount('#app')
