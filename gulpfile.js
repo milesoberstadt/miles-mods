@@ -7,59 +7,60 @@ const gulp = require('gulp')
 const sourcemaps = require('gulp-sourcemaps')
 const uglify = require('gulp-uglify')
 
-gulp.task('clean', (done) => {
+function clean(done) {
   const del = require('del')
   delete cache.caches['build:vue']
   delete cache.caches['build:pug']
   del.sync([ 'dist/*' ])
   done()
-})
+}
+exports.clean = clean;
 
-gulp.task('build:assets:js', () => {
+function build_assets_js() {
   return gulp.src('assets/js/**/*')
-    .pipe(gulp.dest('dist/assets/js'))
-})
+  .pipe(gulp.dest('dist/assets/js'))
+}
 
-gulp.task('build:assets:img', () => {
+function build_assets_img() {
   return gulp.src('assets/img/**/*')
     .pipe(gulp.dest('dist/assets/img'))
-})
+}
 
-gulp.task('build:assets:fonts', () => {
+function build_assets_fonts() {
   return gulp.src('assets/fonts/**/*')
     .pipe(gulp.dest('dist/assets/fonts'))
-})
+}
 
-gulp.task('build:sass', function () {
+function build_sass() {
   const sass = require('gulp-sass')
   return gulp.src('assets/css/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('dist/assets/css'))
-})
+}
 
-gulp.task('build:pug', () => {
+function build_pug() {
   const pug = require('gulp-pug');
   return gulp.src('src/client/index.pug')
     .pipe(cache('build:pug'))
     .pipe(pug({ data: {debug: true} }))
     .pipe(gulp.dest('dist/'))
-})
+}
 
-gulp.task('build:server', () => {
+function build_server() {
   return gulp.src('src/server/**/*.coffee')
     .pipe(cache('build:server'))
     .pipe(coffee({ bare: true }))
     .pipe(gulp.dest('dist/'))
-})
+}
 
-gulp.task('build:utils', () => {
+function build_utils() {
   return gulp.src('src/utils/**/*.coffee')
     .pipe(cache('build:utils'))
     .pipe(coffee({ bare: true }))
     .pipe(gulp.dest('dist/utils/'))
-})
+}
 
-gulp.task('build:vue', () => {
+function build_vue() {
   // set up the browserify instance on a task basis
   const buffer = require('vinyl-buffer')
   const coffeeify = require('coffeeify')
@@ -81,10 +82,10 @@ gulp.task('build:vue', () => {
       .pipe(uglify())
       .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./dist')) // output dir
-})
+    .pipe(gulp.dest('dist/')) // output dir
+}
 
-gulp.task('test:unit', [], () => {
+function test_unit() {
   require('coffee-script/register');
   const mocha = require('gulp-mocha')
   return gulp.src(['test/**/*.coffee', '!test/*.coffee'], { read: false })
@@ -105,23 +106,31 @@ gulp.task('test:unit', [], () => {
     .once('end', () => {
       process.exit();
     })
-})
+}
+exports.test = test_unit
 
-gulp.task('watch:client', [ 'build:client' ], () => {
-  gulp.watch('src/client/**/*', { interval: 500 }, [ 'build:client' ])
-})
+function watch_client() {
+  gulp.watch('src/client/**/*', { interval: 500 }, build_client)
+}
 
-gulp.task('watch:server', [ 'build:server' ], () => {
-  gulp.watch('src/server/**/*.coffee', { interval: 500 }, [ 'build:server' ])
-})
 
-gulp.task('watch:utils', [ 'build:utils' ], () => {
-  gulp.watch('src/utils/**/*.coffee', { interval: 500 }, [ 'build:utils' ])
-})
+function watch_server() {
+  gulp.watch('src/server/**/*.coffee', { interval: 500 }, build_server)
+}
 
-gulp.task('build:assets', [ 'build:assets:js', 'build:assets:img', 'build:assets:fonts' ])
-gulp.task('build:client', [ 'build:vue', 'build:pug', 'build:assets' ])
-gulp.task('build', [ 'clean', 'build:client', 'build:sass', 'build:utils', 'build:server' ])
-gulp.task('test', [ 'test:unit' ])
-gulp.task('watch', [ 'watch:client', 'watch:utils', 'watch:server' ])
-gulp.task('default', [ 'build', 'watch' ])
+function watch_utils() {
+  gulp.watch('src/utils/**/*.coffee', { interval: 500 }, build_utils)
+}
+
+const build_assets = gulp.series(build_assets_js, build_assets_img, build_assets_fonts);
+exports.build_assets = build_assets;
+
+const build_client = gulp.series(build_vue, build_pug, build_assets);
+exports.build_client = build_client;
+
+const build = gulp.series(clean, build_client, build_sass, build_utils, build_server);
+exports.build = build;
+
+const watch_parallel = gulp.parallel(watch_client, watch_utils, watch_server);
+
+exports.default = gulp.series(build, watch_parallel);
