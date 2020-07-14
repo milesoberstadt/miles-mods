@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"heroku_dl5hc1z1.articles"},{"v":2,"unique":true,"key":{"url":1.0},"name":"url_1","ns":"heroku_dl5hc1z1.articles"}],"uuid":"fb8353e369a64d6a9537fcb72b8f5e97"}
