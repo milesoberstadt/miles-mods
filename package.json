@@ -16,7 +16,7 @@
   "author": "Miles Oberstadt",
   "license": "ISC",
   "dependencies": {
-    "async": "^2.1.5",
+    "async": "^3.2.2",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.15.2",
     "connect-ensure-login": "^0.1.1",
