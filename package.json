@@ -55,7 +55,7 @@
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.8",
     "jsdomify": "^3.1.0",
-    "mocha": "^6.1.4",
+    "mocha": "^10.2.0",
     "mockery": "^2.0.0",
     "pug": "^2.0.3",
     "sinon": "^1.17.6",
